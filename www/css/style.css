@@ -1,0 +1,29 @@
+.button {
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 100;
+  font-family: "Segoe UI";
+  letter-spacing: 1px;
+}
+.button.circle {
+  background: #23466e;
+  border: none;
+  border-radius: 900px;
+  color: #e4ecfa;
+  cursor: pointer;
+  
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+  position: relative;
+  margin: auto;
+  margin-top: 25px;
+  transition: 0.5s;
+}
+
+#pic1 {
+    height: 50%;
+    width: 50%;
+}
