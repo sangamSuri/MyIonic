@@ -61,6 +61,12 @@ angular.module('app.routes', [])
     templateUrl: 'templates/signup.html',
     controller: 'signupCtrl'
   })
+  
+  .state('signupFac', {
+    url: '/page9',
+    templateUrl: 'templates/signUpFac.html',
+    controller: 'signupFCtrl'
+  })
 
   .state('menu.trainingPlacement', {
     url: '/page6',
@@ -92,7 +98,7 @@ angular.module('app.routes', [])
     }
   })
 
-$urlRouterProvider.otherwise('/side-menu21/page1')
+$urlRouterProvider.otherwise('/side-menu21/page4')
 
   
 

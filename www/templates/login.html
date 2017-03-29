@@ -1,6 +1,6 @@
 <ion-view title="Login" id="page4">
   <ion-content padding="true" class="has-header">
-    <form id="login-form1" class="list">
+    <form id="login-form1" class="list" ng-submit="Login(User)">
       <div class="bar bar-header bar-light">
         <h1 class="title">Welcome to Dr. AIT</h1>
     </div>  
@@ -8,16 +8,16 @@
       <ion-list id="login-list2">
         <label class="item item-input" id="login-input1">
           <span class="input-label">Email/USN</span>
-          <input type="text" placeholder="">
+          <input type="text" placeholder="" ng-model="User.username">
         </label>
         <label class="item item-input" id="login-input2">
           <span class="input-label">Password</span>
-          <input type="password" placeholder="">
+          <input type="password" placeholder="" ng-model="User.password">
         </label>
       </ion-list>
       <div class="spacer" style="height: 40px;"></div>
       <button id="login-button1" class="button button-stable  button-block">Log in</button>
-      <a  onclick="window.location.href='#/page5'" id="login-button2" class="button button-positive  button-block button-clear">Or create an account</a>
+      <a  ng-click="showPopup()" id="login-button2" class="button button-positive  button-block button-clear">Or create an account</a>
     </form>
   </ion-content>
 </ion-view>
