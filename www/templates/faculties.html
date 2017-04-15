@@ -1,0 +1,20 @@
+<ion-view title="Faculties" id="facultiesList">
+    <ion-content has-header="true" ng-init="GetFaculties()" >
+
+<div class = "row" >
+   <div class = "col"><span>Name</span></div>
+   <div class = "col"><span>Designation</span></div>
+   <div class = "col"><span>Contact</span></div>
+</div>     
+<div class = "row" ng-repeat="faculty in  faculties">
+   <div class = "col"><span>{{faculty.fname}} . {{faculty.lname}}</span></div>
+   <div class = "col"><span>{{faculty.desination}}</span></div>
+   <div class = "col"><span>{{faculty.fmobile}}</span></div>
+</div>
+     <!--ion-list ng-repeat="faculty in  faculties" ng-class-odd="balanced" ng-class-even="positive">
+              <ion-item>Faculty name: <span>{{faculty.fname}} . {{faculty.lname}}</span></ion-item>
+              <ion-item>Faculty Designation :<span>{{faculty.desination}}</span></ion-item>
+              <ion-item>Faculty ContactNo :<span>{{faculty.fmobile}}</span></ion-item>
+    </ion-list-->
+    </ion-content>
+</ion-view>

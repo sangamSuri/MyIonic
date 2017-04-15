@@ -13,12 +13,17 @@
       <div class="title">Menu</div>
     </ion-header-bar>
     <ion-content padding="false" class="side-menu-left has-header ">
+      <!--img src="img/1.jpg"></img-->
+      <img ng-src="img/collegelogo.png" width="55%" height="55%" />
+      <h1>Dr. AIT</h1>
       <ion-list id="menu-list1">
+        
         <ion-item id="menu-list-item1" ui-sref="menu.home" menu-close="">Home</ion-item>
         <ion-item id="menu-list-item2" ui-sref="menu.login" menu-close="">Login</ion-item>
-        <ion-item id="menu-list-item3" ui-sref="menu.department" menu-close="">Department</ion-item>
-        <ion-item id="menu-list-item7" ui-sref="menu.facility" menu-close="">Facility</ion-item>
-        <ion-item id="menu-list-item5" ui-sref="menu.trainingPlacement" menu-close="">Training &amp; Placement</ion-item>
+        <ion-item id="profile" ui-sref="menu.profile" menu-close="" ng-if="show" >Myprofile</ion-item>
+        <ion-item id="menu-list-item3" ui-sref="menu.department" menu-close="" ng-if="show">Department</ion-item>
+        <ion-item id="menu-list-item7" ui-sref="menu.facility" menu-close="" ng-if="show">Facility</ion-item>
+        <ion-item id="menu-list-item5" ui-sref="menu.trainingPlacement" menu-close="" ng-if="show">Training &amp; Placement</ion-item>
         <ion-item id="menu-list-item4" ui-sref="menu.galary" menu-close="">Gallary</ion-item>
         <ion-item id="menu-list-item6" ui-sref="menu.contact" menu-close="">Contact</ion-item>
       </ion-list>

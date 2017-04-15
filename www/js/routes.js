@@ -67,7 +67,30 @@ angular.module('app.routes', [])
     templateUrl: 'templates/signUpFac.html',
     controller: 'signupFCtrl'
   })
-
+  .state('facultiesList', {
+    url: '/facultiesList',
+    templateUrl: 'templates/faculties.html',
+    controller: 'facultiesListFCtrl'
+  })
+  .state('menu.profile', {
+    url: '/profile',
+    views: {
+      'side-menu21': {
+    templateUrl: 'templates/profile.html',
+    controller: 'profileCtrl'
+      }
+    }
+  })
+  .state('StuHomeCtrl',{
+    url: '/StuHome',
+    templateUrl: 'templates/StudentHome.html',
+    controller: 'StuHomeCtrl'
+  })
+.state('FacHome',{
+    url: '/FacHome',
+    templateUrl: 'templates/facultyHome.html',
+    controller: 'facCtrl'
+  })
   .state('menu.trainingPlacement', {
     url: '/page6',
     views: {
@@ -94,6 +117,25 @@ angular.module('app.routes', [])
       'side-menu21': {
         templateUrl: 'templates/contact.html',
         controller: 'contactCtrl'
+      }
+    }
+  })
+  .state('menu.sports', {
+    url: '/page10',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/sports.html',
+        controller: 'sportsCtrl'
+      }
+    }
+  })
+
+  .state('menu.exam', {
+    url: '/page11',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/exam.html',
+        controller: 'examCtrl'
       }
     }
   })

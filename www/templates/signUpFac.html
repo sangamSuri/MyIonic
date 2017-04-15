@@ -1,61 +1,56 @@
-<ion-view title="Signup" id="page9">
-  <ion-content padding="true" class="has-header">
-    <form id="signup-form2" class="list">
+<ion-view title="facilityCtrl" id="page9">
+  <ion-content padding="true" class="has-header"> 
+    <form id="signup-form2" class="list" ng-submit="StaffCreate(Staff)">
       <ion-list id="signup-list3">
         <label class="item item-input" id="signup-input3">
-          <span class="input-label">Name</span>
-          <input type="text" placeholder="">
+          <span class="input-label">First Name</span>
+          <input type="text" placeholder="" ng-model="Staff.fname" required>
         </label>
         <label class="item item-input" id="signup-input4">
-          <span class="input-label">Username</span>
-          <input type="text" placeholder="">
+          <span class="input-label">Last Name</span>
+          <input type="text" placeholder="" ng-model="Staff.lname" required>
         </label>
         <label class="item item-input" id="signup-input5">
           <span class="input-label">Password</span>
-          <input type="text" placeholder="">
+          <input type="password" placeholder="" ng-model="Staff.password" required>
         </label>
         <label class="item item-input" id="signup-input6">
           <span class="input-label">Mobile No</span>
-          <input type="text" placeholder="">
+          <input type="number" placeholder="" ng-model="Staff.fmobile" required>
         </label>
         <label class="item item-input" id="signup-input7">
-          <span class="input-label">Email</span>
-          <input type="text" placeholder="">
+          <span class="input-label">USN/ID</span>
+          <input type="text" placeholder="" ng-model="Staff.usn_id" required>
         </label>
         <label class="item item-input" id="signup-input8">
-          <span class="input-label">USN</span>
-          <input type="text" placeholder="">
+          <span class="input-label">Email</span>
+          <input type="email" placeholder="" ng-model="Staff.email" required>
         </label>
-<div class="list">
+  <div class="list">
 <label class="item item-input item-select">
     <div class="input-label">
-      Branch
+      Desination
     </div>
-    <select>
-      <option>EC</option>
-      <option selected>EEE</option>
-      <option>CS</option>
+    <select ng-model="Staff.desination" required>
+      <option>Lecturer</option>
+      <option>HOD</option>
     </select>
   </label>
 </div>
 <div class="list">
-
-  <label class="item item-input item-select">
+<label class="item item-input item-select">
     <div class="input-label">
-      Semester
+      Department
     </div>
-    <select>
-      <option>1</option>
-      <option selected>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>
-      <option>8</option>
+    <select ng-model="Staff.dept" required>
+      <option>ECE</option>
+      <option >EEE</option>
+      <option>ISE</option>
+      <option>TC</option>
+      <option>MECH</option>
+      <option>CSE</option>
     </select>
   </label>
-
 </div>
   <div class="item item-divider">
 			<button class="button" ng-click="upload()">Upload From Assets</button>
@@ -63,7 +58,7 @@
 			My Images
 	</div>
       </ion-list>
-      <button id="signup-button3" class="button button-stable  button-block">Sign up</button>
+      <button id="signup-button3" class="button button-stable  button-block" type="submit">Sign up</button>
     </form>
   </ion-content>
 </ion-view>
