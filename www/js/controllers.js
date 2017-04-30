@@ -43,7 +43,7 @@ function ($scope, $stateParams,$http,userdetails) {
       userDetails.userName;
       $http({
     method: "GET",
-    url: "http://192.168.1.16:8080/Feedback/ListStudents/"+userDetails.userName,
+    url: "http://192.168.1.12:8080/Feedback/ListStudents/"+userDetails.userName,
     dataType: "json",
 	  contentType: 'application/json',
 	})
@@ -51,7 +51,7 @@ function ($scope, $stateParams,$http,userdetails) {
       $scope.Branch = data[0].branch;
       $scope.SEM = data[0].sem;
       $scope.USN = data[0].studentUSN;
-			$scope.emial = data[0].email;
+			$scope.EmailID = data[0].email;
       $scope.UserName = data[0].studentName;
       $scope.Mobile = data[0].mobileNo;
       alert(data);
@@ -84,7 +84,7 @@ function ($scope, $stateParams,$http,userdetails) {
       userDetails.userName;
       $http({
     method: "GET",
-    url: "http://192.168.1.16:8080/Feedback/ListFac/"+userDetails.branch,
+    url: "http://192.168.1.12:8080/Feedback/ListFac/"+userDetails.branch,
     dataType: "json",
 	  contentType: 'application/json',
 	})
@@ -129,6 +129,12 @@ function($scope, $stateParams,$location) {
 
 
 }])
+.controller('logoutCtrl',
+function($scope,$rootScope,$location){
+$rootScope.isUserLoggedIn = false;
+window.location.href='#/side-menu21/page4';
+}
+)
 .controller('loginCtrl', ['$scope', '$stateParams','$ionicPopup','$location','$http', '$rootScope','userdetails',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
@@ -181,7 +187,7 @@ $scope.Login = function(User){
   User.role = $scope.role;
   $http({
     method: "POST",
-    url: "http://192.168.1.16:8080/Feedback/Login",
+    url: "http://192.168.1.12:8080/Feedback/Login",
     dataType: "json",
 	  contentType: 'application/json',
   	data : JSON.stringify(User)
@@ -194,7 +200,7 @@ $scope.Login = function(User){
          _userdetails.setUserDetails(data[0].id,data[0].branch,data[0].sem);
          var test = _userdetails.getUserdetails();
         //  alert(test.id);
-
+        $rootScope.isUserLoggedIn = true;
 			if(data[0].role === 'Lecturer' || data[0].role === 'HOD'){
 			//window.location.replace("home.html");	
 			alert("welcome ");
@@ -205,14 +211,14 @@ $scope.Login = function(User){
       }
       }else{
 				//window.location.replace("index.html");
-        $rootScope.loggedUser = null;
+        $rootScope.isUserLoggedIn = null;
         alert("Error while creating Please try later");
         window.location.href='#/side-menu21/page4'
 			}
 			
 		})
 		.error(function(){
-      $rootScope.loggedUser = null;
+      $rootScope.isUserLoggedIn = null;
 			//window.location.replace("index.html");
 			alert("some thing went wrong");
 		});
@@ -281,7 +287,7 @@ $scope.StudentCreate = function(Student){
 
 $http({
     method: "POST",
-    url: "http://192.168.1.16:8080/Feedback/RegisterStudent",
+    url: "http://192.168.1.12:8080/Feedback/RegisterStudent",
     dataType: "json",
 	contentType: 'application/json',
 	data : JSON.stringify(Student)
@@ -327,7 +333,7 @@ function ($scope, $stateParams,$http) {
 
 $http({
     method: "POST",
-    url: "http://192.168.1.16:8080/Feedback/RegisterFac",
+    url: "http://192.168.1.12:8080/Feedback/RegisterFac",
     dataType: "json",
 	contentType: 'application/json',
 	data : JSON.stringify(Staff)
@@ -369,7 +375,7 @@ function ($scope, $stateParams,userdetails,$http) {
     user.branch = details.branch;
 $http({
     method: "POST",
-    url: "http://192.168.1.16:8080/Feedback/placement",
+    url: "http://192.168.1.12:8080/Feedback/placement",
     dataType: "json",
 	contentType: 'application/json',
 	data : JSON.stringify(user)
@@ -380,7 +386,8 @@ $http({
         angular.forEach(data, function(value,index){
             $scope.images.push(
               {
-                src: "http://192.168.1.16:8080/acs/image/users/"+value.image
+                src: "http://192.168.1.12:8080/acs/image/users/"+value.image,
+                id : value.image
               }
               );
         });
@@ -424,7 +431,7 @@ function ($scope, $stateParams,userdetails,$http) {
     user.branch = details.branch;
 $http({
     method: "POST",
-    url: "http://192.168.1.16:8080/Feedback/exams",
+    url: "http://192.168.1.12:8080/Feedback/exams",
     dataType: "json",
 	contentType: 'application/json',
 	data : JSON.stringify(user)
@@ -435,7 +442,7 @@ $http({
         angular.forEach(data, function(value,index){
             $scope.images.push(
               {
-                src: "http://192.168.1.16:8080/acs/image/users/"+value.image
+                src: "http://192.168.1.12:8080/acs/image/users/"+value.image
               }
               );
         });
@@ -467,7 +474,7 @@ function ($scope, $stateParams,userdetails,$http) {
     user.branch = details.branch;
 $http({
     method: "POST",
-    url: "http://192.168.1.16:8080/Feedback/sports",
+    url: "http://192.168.1.12:8080/Feedback/sports",
     dataType: "json",
 	contentType: 'application/json',
 	data : JSON.stringify(user)
@@ -478,7 +485,8 @@ $http({
         angular.forEach(data, function(value,index){
             $scope.images.push(
               {
-                src: "http://192.168.1.16:8080/acs/image/users/"+value.image
+                src: "http://192.168.1.12:8080/acs/image/users/"+value.image,
+                id : value.image
               }
               );
         });
@@ -505,7 +513,7 @@ function ($scope, $stateParams) {
        
             $scope.images = [
               {
-    src:'http://192.168.1.16:8084/acs/image/users1.png',
+    src:'http://192.168.1.12:8084/acs/image/users1.png',
     sub: 'This is a <b>subtitle</b>'
   },
   {
@@ -533,7 +541,16 @@ function ($scope, $stateParams) {
     }
 
 }])
-   
+.controller("MyController", function($scope, $state, $stateParams,$http, $location ) {
+   $scope.images = [];  
+   $scope.fullid=$stateParams.fullid;
+  //  alert($stateParams.fullid);
+    $scope.images = "http://192.168.1.12:8080/acs/image/users/"+$scope.fullid;
+       //   console.log('Success', resp);
+  $scope.back = function(){
+    $location.back();
+  }  
+})
 .controller('contactCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName

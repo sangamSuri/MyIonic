@@ -139,9 +139,35 @@ angular.module('app.routes', [])
       }
     }
   })
+  .state('full', {
+        url: "/full/:fullid",
+        templateUrl: 'templates/full.html',
+        controller: 'MyController'
+  }).state('menu.logout',{
+    url: 'logout',
+    views:{
+      'side-menu21': {
+    controller: 'logoutCtrl'
+      }
+    }
+  })
 
 $urlRouterProvider.otherwise('/side-menu21/page4')
 
   
 
-});
+}).run(function($rootScope, $location){
+        //console.log("Into run mode");
+        // console.log("Userid 5 is logged in: ", $logincheck(5));
+        // console.log("Userid 0  logged in: ", $logincheck(0));
+        
+        //now redirect to appropriate path based on login status
+        if(!$rootScope.isUserLoggedIn)
+        {
+          $location.path('/menu.login');          
+        }
+        else
+        {
+          //$location.path('/publicurl'); or 
+        }
+      });

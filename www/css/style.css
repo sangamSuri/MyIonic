@@ -118,3 +118,14 @@
       .positive{
         color: antiquewhite;
       }
+
+      .background.scroll-content{ 
+        background: url('../img/b3.jpg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+      }
+      #item:hover {
+  background-color: slategray;
+  box-shadow: inset 0px 0px 0px 1px red;
+}
