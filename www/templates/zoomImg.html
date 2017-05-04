@@ -3,7 +3,7 @@
       <a class="button icon-left ion-chevron-left button-clear button-dark" href="#/lists"></a>
       </ion-header-bar>
     <ion-content ng-controller="MyController" >
-          <ion-scroll id="mapImage"
+        <ion-scroll id="mapImage"
                 zooming="true"
                 direction="xy"
                 delegate-handle="zoom-pane"
@@ -11,7 +11,7 @@
                 min-zoom="1"
                 max-zoom="15"
                 overflow-scroll="false">
-          <image ng-src="{{images}}" width="100%" />
+          <image ng-src="{{imageList}}" width="100%" />
           </ion-scroll>
     </ion-content>
 </ion-view>

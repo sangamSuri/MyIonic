@@ -1,0 +1,37 @@
+<ion-view title="Training &amp; Placement" id="page6">
+  <ion-content padding="true" class="has-header" ng-init="loadImages()" >
+    <div class="row" ng-repeat="image in images" ng-if="$index % 2 === 0">
+        <div class="col col-50" ng-if="$index < images.length">
+            <a href="#/localimage/{{images[$index].id}}"><img ng-src="{{images[$index].src}}" width="100%" /></a>
+        </div>
+        <div class="col col-50" ng-if="$index + 1 < images.length">
+            <a href="#/localimage/{{images[$index +1].id}}"><img ng-src="{{images[$index + 1].src}}" width="100%" /></a>
+        </div>
+    </div>
+    <div class="col col-100">
+
+        <div id="wrapper" class="fade-in">
+
+
+			<!-- Main -->
+					<div id="main">
+
+						<!-- Featured Post -->
+							<article class="post featured">
+								<header class="major">
+									<span class="date">Important Student Placement Links</span>
+									<ul>
+										<li><a href="">India Job Portal</a></li>
+										<li><a href="">Union Public Service Commission (UPSC)</a></li>
+                                        <li><a href="">Staff Selection Committee</a></li>
+                                        <li><a href="">Indian Government Jobs</a></li>
+									 </ul>
+								</header>
+                                <span><a href="">Click here for Placement Brochure</a></span>
+							</article>
+					</div>
+        </div>
+    </div>
+    </div>
+  </ion-content>
+</ion-view>

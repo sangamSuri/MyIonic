@@ -100,6 +100,15 @@ angular.module('app.routes', [])
       }
     }
   })
+  .state('menu.trainingPlacementMenu', {
+    url: '/page20',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/trainingPlacementMenu.html',
+        controller: 'trainingPlacementCtrl1'
+      }
+    }
+  })
 
   .state('menu.galary', {
     url: '/page7',
@@ -143,7 +152,14 @@ angular.module('app.routes', [])
         url: "/full/:fullid",
         templateUrl: 'templates/full.html',
         controller: 'MyController'
-  }).state('menu.logout',{
+  })
+  .state('localimage', {
+        url: "/localimage/:fullid",
+        templateUrl: 'templates/zoomImg.html',
+        controller: 'localimage'
+  })
+  
+  .state('menu.logout',{
     url: 'logout',
     views:{
       'side-menu21': {

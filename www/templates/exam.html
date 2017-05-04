@@ -1,5 +1,12 @@
 <ion-view title="Exam details" id="page6">
   <ion-content padding="true" class="has-header"  ng-init="loadImages()">
+     <button ion-button class="col col-100" style="color: blue" ng-click="showExam()">Click here text Notifications</button>
+    
+    <div class="col col-100" ng-hide="ExamText" class="ng-hide">
+         <ion-list ng-repeat="text in textNotify" >
+              <ion-item>{{text.src}}</ion-item>
+         </ion-list>
+    </div>
      <div class="row" ng-repeat="image in images" ng-if="$index % 2 === 0">
         <div class="col col-50" ng-if="$index < images.length">
             <a href="#/full/{{images[$index].id}}"><img ng-src="{{images[$index].src}}" width="100%" /></a>

@@ -43,7 +43,7 @@ function ($scope, $stateParams,$http,userdetails) {
       userDetails.userName;
       $http({
     method: "GET",
-    url: "http://192.168.1.12:8080/Feedback/ListStudents/"+userDetails.userName,
+    url: "http://192.168.1.19:8080/Feedback/ListStudents/"+userDetails.userName,
     dataType: "json",
 	  contentType: 'application/json',
 	})
@@ -81,10 +81,10 @@ function ($scope, $stateParams,$http,userdetails) {
     var _userdetails = userdetails;
     var userDetails = _userdetails.getUserdetails();
       
-      userDetails.userName;
-      $http({
+  userDetails.userName;
+  $http({
     method: "GET",
-    url: "http://192.168.1.12:8080/Feedback/ListFac/"+userDetails.branch,
+    url: "http://192.168.1.19:8080/Feedback/ListFac/"+userDetails.branch,
     dataType: "json",
 	  contentType: 'application/json',
 	})
@@ -123,6 +123,10 @@ function($scope, $stateParams,$location) {
   }
 
   $scope.placement = function(){
+    $location.path('/side-menu21/page6');
+    $location.replace();
+  }
+  $scope.myResult = function(){
     $location.path('/side-menu21/page6');
     $location.replace();
   }
@@ -187,7 +191,7 @@ $scope.Login = function(User){
   User.role = $scope.role;
   $http({
     method: "POST",
-    url: "http://192.168.1.12:8080/Feedback/Login",
+    url: "http://192.168.1.19:8080/Feedback/Login",
     dataType: "json",
 	  contentType: 'application/json',
   	data : JSON.stringify(User)
@@ -287,7 +291,7 @@ $scope.StudentCreate = function(Student){
 
 $http({
     method: "POST",
-    url: "http://192.168.1.12:8080/Feedback/RegisterStudent",
+    url: "http://192.168.1.19:8080/Feedback/RegisterStudent",
     dataType: "json",
 	contentType: 'application/json',
 	data : JSON.stringify(Student)
@@ -333,7 +337,7 @@ function ($scope, $stateParams,$http) {
 
 $http({
     method: "POST",
-    url: "http://192.168.1.12:8080/Feedback/RegisterFac",
+    url: "http://192.168.1.19:8080/Feedback/RegisterFac",
     dataType: "json",
 	contentType: 'application/json',
 	data : JSON.stringify(Staff)
@@ -363,7 +367,16 @@ $http({
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,userdetails,$http) {
-  
+  $scope.PlacementText = true;
+
+  $scope.showPlacement = function(){
+    if($scope.PlacementText){
+      $scope.PlacementText = false;
+    }else{
+      $scope.PlacementText = true;
+    }
+  }
+
   $scope.loadImages = function(){
     var details = userdetails.getUserdetails();
     var user = {
@@ -371,11 +384,13 @@ function ($scope, $stateParams,userdetails,$http) {
       'branch':''
     }
     $scope.images = [];
+    $scope.textNotify = [];
     user.sem = details.sem;
     user.branch = details.branch;
+
 $http({
     method: "POST",
-    url: "http://192.168.1.12:8080/Feedback/placement",
+    url: "http://192.168.1.19:8080/Feedback/placement",
     dataType: "json",
 	contentType: 'application/json',
 	data : JSON.stringify(user)
@@ -386,7 +401,7 @@ $http({
         angular.forEach(data, function(value,index){
             $scope.images.push(
               {
-                src: "http://192.168.1.12:8080/acs/image/users/"+value.image,
+                src: "http://192.168.1.19:8080/acs/image/users/"+value.image,
                 id : value.image
               }
               );
@@ -401,6 +416,35 @@ $http({
 			//window.location.replace("index.html");
 			alert("some thing went wrong");
 		});
+
+$http({
+    method: "POST",
+    url: "http://192.168.1.19:8080/Feedback/placementText",
+    dataType: "json",
+	contentType: 'application/json',
+	data : JSON.stringify(user)
+	})
+		.success(function(data){
+			//login
+			if(data){
+        angular.forEach(data, function(value,index){
+            $scope.textNotify.push(
+              {
+                src: value.image
+              }
+              );
+        });
+        // $scope.placementImage = data;
+			}else{
+        alert("no updates yet!");
+			}
+			
+		})
+		.error(function(){
+			//window.location.replace("index.html");
+			alert("some thing went wrong");
+		});
+
 
     // angular.forEach($scope.placementImage,function(index,value){
     //     if(value)
@@ -420,6 +464,16 @@ $http({
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,userdetails,$http) {
   
+  $scope.ExamText = true;
+
+  $scope.showExam = function(){
+    if($scope.ExamText){
+      $scope.ExamText = false;
+    }else{
+      $scope.ExamText = true;
+    }
+  }
+
   $scope.loadImages = function(){
     var details = userdetails.getUserdetails();
     var user = {
@@ -427,11 +481,13 @@ function ($scope, $stateParams,userdetails,$http) {
       'branch':''
     }
     $scope.images = [];
+    $scope.textNotify = [];
+
     user.sem = details.sem;
     user.branch = details.branch;
 $http({
     method: "POST",
-    url: "http://192.168.1.12:8080/Feedback/exams",
+    url: "http://192.168.1.19:8080/Feedback/exams",
     dataType: "json",
 	contentType: 'application/json',
 	data : JSON.stringify(user)
@@ -442,7 +498,35 @@ $http({
         angular.forEach(data, function(value,index){
             $scope.images.push(
               {
-                src: "http://192.168.1.12:8080/acs/image/users/"+value.image
+                src: "http://192.168.1.19:8080/acs/image/users/"+value.image
+              }
+              );
+        });
+        // $scope.placementImage = data;
+			}else{
+        alert("no updates yet!");
+			}
+			
+		})
+		.error(function(){
+			//window.location.replace("index.html");
+			alert("some thing went wrong");
+		});
+
+    $http({
+    method: "POST",
+    url: "http://192.168.1.19:8080/Feedback/examsText",
+    dataType: "json",
+	contentType: 'application/json',
+	data : JSON.stringify(user)
+	})
+		.success(function(data){
+			//login
+			if(data){
+        angular.forEach(data, function(value,index){
+            $scope.textNotify.push(
+              {
+                src: value.image
               }
               );
         });
@@ -458,11 +542,50 @@ $http({
 		});
   }
 }])
+.controller('trainingPlacementCtrl1',
+function($scope){
+ $scope.images = [];
+ 
+    $scope.loadImages = function() {
+       
+            $scope.images = [
+              
+  {
+    src:'img/pl1.png',
+    id:'pl1.png',
+    sub: '' /* Not showed */
+  },
+  {
+    src:'img/pl2.png',
+    id:'pl2.png',
+    thumb:''
+  },
+  {
+    src:'img/pl3.png',
+    id:'pl3.png',
+    thumb:''
+  }
+   
+            ]
+       
+    }
+
+})
 .controller('sportsCtrl', ['$scope', '$stateParams','userdetails','$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,userdetails,$http) {
   
+  $scope.SportText = true;
+
+  $scope.sportsExam = function(){
+    if($scope.SportText){
+      $scope.SportText = false;
+    }else{
+      $scope.SportText = true;
+    }
+  }
+
   $scope.loadImages = function(){
     var details = userdetails.getUserdetails();
     var user = {
@@ -470,11 +593,12 @@ function ($scope, $stateParams,userdetails,$http) {
       'branch':''
     }
     $scope.images = [];
+    $scope.textNotify = [];
     user.sem = details.sem;
     user.branch = details.branch;
 $http({
     method: "POST",
-    url: "http://192.168.1.12:8080/Feedback/sports",
+    url: "http://192.168.1.19:8080/Feedback/sports",
     dataType: "json",
 	contentType: 'application/json',
 	data : JSON.stringify(user)
@@ -485,8 +609,35 @@ $http({
         angular.forEach(data, function(value,index){
             $scope.images.push(
               {
-                src: "http://192.168.1.12:8080/acs/image/users/"+value.image,
+                src: "http://192.168.1.19:8080/acs/image/users/"+value.image,
                 id : value.image
+              }
+              );
+        });
+        // $scope.placementImage = data;
+			}else{
+        alert("no updates yet!");
+			}
+			
+		})
+		.error(function(){
+			//window.location.replace("index.html");
+			alert("some thing went wrong");
+		});
+    $http({
+    method: "POST",
+    url: "http://192.168.1.19:8080/Feedback/sportsText",
+    dataType: "json",
+	contentType: 'application/json',
+	data : JSON.stringify(user)
+	})
+		.success(function(data){
+			//login
+			if(data){
+        angular.forEach(data, function(value,index){
+            $scope.textNotify.push(
+              {
+                src: value.image
               }
               );
         });
@@ -512,16 +663,15 @@ function ($scope, $stateParams) {
     $scope.loadImages = function() {
        
             $scope.images = [
-              {
-    src:'http://192.168.1.12:8084/acs/image/users1.png',
-    sub: 'This is a <b>subtitle</b>'
-  },
+              
   {
     src:'img/1.jpg',
+    id:'1.jpg',
     sub: '' /* Not showed */
   },
   {
     src:'img/1.jpg',
+    id:'1.jpg',
     thumb:''
   },
    {
@@ -530,10 +680,12 @@ function ($scope, $stateParams) {
   },
   {
     src:'img/1.jpg',
+    id:'1.jpg',
     sub: '' /* Not showed */
   },
   {
     src:'img/1.jpg',
+    id:'1.jpg',
     thumb:''
   }
             ]
@@ -545,7 +697,17 @@ function ($scope, $stateParams) {
    $scope.images = [];  
    $scope.fullid=$stateParams.fullid;
   //  alert($stateParams.fullid);
-    $scope.images = "http://192.168.1.12:8080/acs/image/users/"+$scope.fullid;
+    $scope.images = "http://192.168.1.19:8080/acs/image/users/"+$scope.fullid;
+       //   console.log('Success', resp);
+  $scope.back = function(){
+    $location.back();
+  }  
+})
+.controller("localimage", function($scope, $state, $stateParams,$http, $location ) {
+   $scope.imageList = [];  
+   $scope.fullid=$stateParams.fullid;
+  //  alert($stateParams.fullid);
+    $scope.imageList = 'img/'+$scope.fullid;
        //   console.log('Success', resp);
   $scope.back = function(){
     $location.back();
