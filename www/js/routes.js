@@ -86,10 +86,19 @@ angular.module('app.routes', [])
     templateUrl: 'templates/StudentHome.html',
     controller: 'StuHomeCtrl'
   })
-.state('FacHome',{
+  .state('StuDetailCtrl',{
+    url: '/StuDetailsHome',
+    templateUrl: 'templates/studentDetailsForFac.html',
+    controller: 'StuDetailCtrl'
+  })
+.state('menu.FacHome',{
     url: '/FacHome',
+    views: {
+      'side-menu21': {
     templateUrl: 'templates/facultyHome.html',
     controller: 'facCtrl'
+      }
+    }
   })
   .state('menu.trainingPlacement', {
     url: '/page6',

@@ -1,0 +1,30 @@
+<ion-view title="student" id="FacHome">
+    <ion-content padding="true" class="has-header" style="background-color: seashell">
+    <div class="col col-100">
+    Select Sem <select ng-model="sem" ng-change="showSelectValue(sem)">
+      <option value="1">1</option>
+      <option selected>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+    </select>
+    <button ion-button class="col col-100" style="color: blue" ng-click="GetStu()">Get List</button>
+    </div>
+
+    <div class="col col-100">
+        <div class = "row" >
+   <div class = "col"><span>Name</span></div>
+   <div class = "col"><span>USN</span></div>
+   <div class = "col"><span>Contact</span></div>
+</div>     
+<div class = "row" ng-repeat="student in students">
+   <div class = "col"><span>{{student.studentName}}</span></div>
+   <div class = "col"><span>{{student.studentUSN}}</span></div>
+   <div class = "col"><span>{{student.mobileNo}}</span></div>
+</div>
+        </div>
+    </ion-content>
+</ion-view>

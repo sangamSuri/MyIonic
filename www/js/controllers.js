@@ -64,10 +64,20 @@ function ($scope, $stateParams,$http,userdetails) {
     
 
 }])
-.controller('facCtrl', ['$scope', '$stateParams','$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('facCtrl', ['$scope', '$stateParams','$http','$location', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http) {
+function ($scope, $stateParams,$http,$location) {
+  
+  $scope.uProfile = function(){
+    $location.path('/StuDetailsHome');
+    $location.replace();
+  }
+
+  $scope.getfac = function(){
+    $location.path('/facultiesList');
+    $location.replace();
+  }
 
 
 }])
@@ -99,6 +109,39 @@ function ($scope, $stateParams,$http,userdetails) {
     
 
 }])
+.controller('StuDetailCtrl', ['$scope', '$stateParams','$http','userdetails', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams,$http,userdetails) {
+  $scope.UserName ="";
+  $scope.students = [];
+
+   $scope.showSelectValue = function(val){
+    $scope.sem = val;
+   }  
+  $scope.GetStu = function(){
+    
+    var _userdetails = userdetails;
+    var userDetails = _userdetails.getUserdetails();
+      
+  userDetails.userName;
+  $http({
+    method: "GET",
+    url: "http://192.168.1.19:8080/Feedback/ListStudentDetails/"+userDetails.branch+"/sem/"+$scope.sem,
+    dataType: "json",
+	  contentType: 'application/json',
+	})
+		.success(function(data){
+      $scope.students = data;
+		})
+		.error(function(){
+			alert("some thing went wrong");
+		});
+
+  }
+    
+
+}])
 
 .controller('StuHomeCtrl',[ '$scope', '$stateParams','$location',
 function($scope, $stateParams,$location) {
@@ -121,7 +164,6 @@ function($scope, $stateParams,$location) {
     $location.path('/side-menu21/page10');
     $location.replace();
   }
-
   $scope.placement = function(){
     $location.path('/side-menu21/page6');
     $location.replace();
@@ -130,14 +172,12 @@ function($scope, $stateParams,$location) {
     $location.path('/side-menu21/page6');
     $location.replace();
   }
-
-
 }])
 .controller('logoutCtrl',
 function($scope,$rootScope,$location){
-$rootScope.isUserLoggedIn = false;
-window.location.href='#/side-menu21/page4';
-}
+    $rootScope.isUserLoggedIn = false;
+    window.location.href='#/side-menu21/page4';
+  }
 )
 .controller('loginCtrl', ['$scope', '$stateParams','$ionicPopup','$location','$http', '$rootScope','userdetails',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -197,9 +237,6 @@ $scope.Login = function(User){
   	data : JSON.stringify(User)
 	})
 		.success(function(data){
-			//login
-      // userdetails.setUserDetails();
-      
       if(data[0].status){
          _userdetails.setUserDetails(data[0].id,data[0].branch,data[0].sem);
          var test = _userdetails.getUserdetails();
@@ -208,7 +245,8 @@ $scope.Login = function(User){
 			if(data[0].role === 'Lecturer' || data[0].role === 'HOD'){
 			//window.location.replace("home.html");	
 			alert("welcome ");
-        window.location.href='#/FacHome'
+        $location.path('/side-menu21/FacHome');
+        $location.replace();
 			}else if(data[0].role === 'Student'){
       alert("welcome ");
         window.location.href='#/StuHome'
