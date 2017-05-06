@@ -168,6 +168,12 @@ angular.module('app.routes', [])
         controller: 'localimage'
   })
   
+  .state('resultCtrl', {
+    url: '/resultCtrl',
+    templateUrl: 'templates/resultCtrl.html',
+    controller: 'resultCtrl'
+  })
+  
   .state('menu.logout',{
     url: 'logout',
     views:{

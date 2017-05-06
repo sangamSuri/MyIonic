@@ -306,3 +306,12 @@ height: 100% !important;
     -ms-flex-align: center;
     align-items: center;    
 }
+.family-icon-scroller {
+    height: 87px;
+    -webkit-overflow-scrolling: touch;
+    padding: 15px 15px 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    list-style: none;
+}

@@ -1,0 +1,39 @@
+<ion-view title="My Result" id="result">
+    <ion-content has-header="true" ng-init="GetDetails()" class="" style="min-width: 100%;overflow: scroll;">
+          <div class = "row" >
+                <div class = "col" >
+                    <div class = "row"><span>{{myResultSubName.examType}}:</span></div>
+                    <div class = "row"><span>{{myResultSubName.sub1}}:</span></div>
+                    <div class = "row"><span>{{myResultSubName.sub2}}:</span></div>
+                    <div class = "row"><span>{{myResultSubName.sub3}}:</span></div>
+                    <div class = "row"><span>{{myResultSubName.sub4}}:</span></div>
+                    <div class = "row"><span>{{myResultSubName.sub5}}:</span></div>
+                    <div class = "row"><span>{{myResultSubName.sub6}}:</span></div>
+                    <div class = "row"><span>{{myResultSubName.sub7}}:</span></div>
+                    <div class = "row"><span>{{myResultSubName.sub8}}:</span></div>
+                    <div class = "row"><span>{{myResultSubName.sub9}}:</span></div>
+                    <div class = "row"><span>{{myResultSubName.sub10}}:</span></div>
+                    <div class = "row"><span>{{myResultSubName.CGPA}}:</span></div>
+                    <div class = "row"><span>{{myResultSubName.SGPA}}:</span></div>
+                </div>
+                <div ng-repeat="myresult in  myResult">
+                <div class="col" >
+                    <div class = "row"><span>{{myresult.markType}}</span></div>
+                    <div class = "row"><span>{{myresult .sub1Code}}</span></div>
+                    <div class = "row"><span>{{myresult.sub2Code}}</span></div>
+                    <div class = "row"><span>{{myresult .sub3Code}}</span></div>
+                    <div class = "row"><span>{{myresult .sub4Code}}</span></div>
+                    <div class = "row"><span>{{myresult .sub5Code}}</span></div>
+                    <div class = "row"><span>{{myresult .sub6Code}}</span></div>
+                    <div class = "row"><span>{{myresult .sub7Code}}</span></div>
+                    <div class = "row"><span>{{myresult .sub8Code}}</span></div>
+                    <div class = "row"><span>{{myresult .sub9Code}}</span></div>
+                    <div class = "row"><span>{{myresult .sub10Code}}</span></div>
+                    <div class = "row"><span>{{myresult .cgpa}}</span></div>
+                    <div class = "row"><span>{{myresult .sgpa}}</span></div>                    
+                </div>   
+                </div> 
+          </div>
+              
+</ion-content>
+</ion-view>
